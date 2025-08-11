@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuiSphere - Red Social + Marketplace On-Chain</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#7c3aed',
+                    },
+                    backdropBlur: {
+                        xs: '2px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #2563eb 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 transition-colors duration-500 dark:bg-gray-900 dark:text-white">
+
+    <!-- Botones de tema e idioma -->
+    <div class="fixed top-4 right-4 z-50 flex gap-2">
+        <button id="themeToggle" class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-white hover:bg-white/20 transition-all duration-300 flex items-center gap-2">
+            <span>🌙</span>
+            <span>Modo Oscuro</span>
+        </button>
+        <button id="languageToggle" class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-white hover:bg-white/20 transition-all duration-300 flex items-center gap-2">
+            <span>🌐</span>
+            <span>ES</span>
+        </button>
+    </div>
+
+    <!-- Navegación -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <!-- Logo -->
+                    <img src="logo.png" alt="SuiSphere Logo" class="w-8 h-8 rounded-full object-cover" />
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">SuiSphere</h1>
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#home" class="font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Inicio</a>
+                    <a href="#vision" class="font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Visión</a>
+                    <a href="#features" class="font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Características</a>
+                    <a href="#architecture" class="font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Arquitectura</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sección Hero -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative pt-20">
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full filter blur-3xl opacity-20"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full filter blur-3xl opacity-20"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+            <div class="flex flex-col items-center mb-6">
+                <!-- Logo centrado -->
+                <div class="mb-4">
+                    
+					<img src="logo2.png" alt="SuiSphere Logo" class="w-15 h-15" />
+                </div>
+                <!-- Título grande -->
+                <h1 id="mainTitle" class="text-5xl md:text-7xl font-bold leading-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    SuiSphere
+                </h1>
+            </div>
+
+            <p id="subtitle" class="text-xl md:text-2xl mb-8 text-gray-600 dark:text-gray-300">
+                Red Social + Marketplace On-Chain
+            </p>
+            <p id="description" class="text-lg max-w-3xl mx-auto mb-12 text-gray-500 dark:text-gray-400">
+                Una red social descentralizada con marketplace integrado, construida sobre Sui Blockchain. Crea, monetiza y vende activos digitales directamente desde tus publicaciones.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button id="getStartedBtn" class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                    Comenzar Ahora
+                </button>
+                <button id="viewDemoBtn" class="font-semibold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20">
+                    Ver Demo
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Características -->
+    <section id="features" class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 id="featuresTitle" class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    Características
+                </h2>
+                <p id="featuresSubtitle" class="text-xl max-w-3xl mx-auto text-gray-600 dark:text-gray-300">
+                    Lo que hace que SuiSphere sea único
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Característica 1 -->
+                <div class="p-8 rounded-2xl glass-effect transition-all duration-500 hover:scale-105">
+                    <div class="w-12 h-12 mb-6 rounded-xl flex items-center justify-center text-2xl bg-blue-500/20">
+                        🔗
+                    </div>
+                    <h3 id="feature1Title" class="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+                        Publicaciones on-chain
+                    </h3>
+                    <p id="feature1Desc" class="text-gray-600 dark:text-gray-300">
+                        Cada post es un objeto en Sui con contenido, imagen y metadatos. Los creadores poseen realmente su contenido.
+                    </p>
+                </div>
+
+                <!-- Característica 2 -->
+                <div class="p-8 rounded-2xl glass-effect transition-all duration-500 hover:scale-105">
+                    <div class="w-12 h-12 mb-6 rounded-xl flex items-center justify-center text-2xl bg-green-500/20">
+                        💰
+                    </div>
+                    <h3 id="feature2Title" class="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+                        Monetización directa
+                    </h3>
+                    <p id="feature2Desc" class="text-gray-600 dark:text-gray-300">
+                        Los posts pueden estar a la venta. Los compradores pagan en SUI y el vendedor recibe el dinero al instante sin intermediarios.
+                    </p>
+                </div>
+
+                <!-- Característica 3 -->
+                <div class="p-8 rounded-2xl glass-effect transition-all duration-500 hover:scale-105">
+                    <div class="w-12 h-12 mb-6 rounded-xl flex items-center justify-center text-2xl bg-purple-500/20">
+                        ⚡
+                    </div>
+                    <h3 id="feature3Title" class="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+                        Eventos en tiempo real
+                    </h3>
+                    <p id="feature3Desc" class="text-gray-600 dark:text-gray-300">
+                        Cada venta emite un evento NFTSold, ideal para indexar y mostrar en el feed. Transparencia total en cada transacción.
+                    </p>
+                </div>
+
+                <!-- Característica 4 -->
+                <div class="p-8 rounded-2xl glass-effect transition-all duration-500 hover:scale-105">
+                    <div class="w-12 h-12 mb-6 rounded-xl flex items-center justify-center text-2xl bg-yellow-500/20">
+                        🚀
+                    </div>
+                    <h3 id="feature4Title" class="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+                        Bajo costo y alta velocidad
+                    </h3>
+                    <p id="feature4Desc" class="text-gray-600 dark:text-gray-300">
+                        Gracias a Sui, las transacciones son casi instantáneas y cuestan menos de $0.01. Escalabilidad sin compromisos.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Arquitectura -->
+    <section id="architecture" class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 id="archTitle" class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    Arquitectura
+                </h2>
+                <p id="archSubtitle" class="text-xl max-w-3xl mx-auto text-gray-600 dark:text-gray-300">
+                    Construido con las tecnologías más avanzadas de Web3
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="p-8 rounded-2xl glass-effect">
+                        <h3 id="contractTitle" class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+                            Contrato Move
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-blue-600 dark:text-blue-400">
+                                    <span id="moduleLabel">Módulo</span>
+                                </h4>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    <code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">suisphere::post</code>
+                                </p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-blue-600 dark:text-blue-400">
+                                    <span id="keyObjectsLabel">Objetos clave</span>
+                                </h4>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-300">
+                                    <li><code class="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800">Post</code>: <span id="postDesc">Publicación con contenido y precio</span></li>
+                                    <li><code class="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800">NFTSold</code>: <span id="nftSoldDesc">Evento de venta (para indexación)</span></li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-blue-600 dark:text-blue-400">
+                                    <span id="mainFuncLabel">Funciones principales</span>
+                                </h4>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-300">
+                                    <li><code class="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800">create_post</code>: <span id="createPostDesc">Crea una nueva publicación</span></li>
+                                    <li><code class="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800">buy_nft_from_post</code>: <span id="buyNFTDesc">Compra el "NFT" de un post a la venta</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-8 rounded-2xl glass-effect">
+                    <h3 id="techTitle" class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+                        Tecnologías
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <span class="text-2xl">📦</span>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 dark:text-white">
+                                    Move
+                                </h4>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    <span id="moveDesc">Lenguaje de Sui para smart contracts</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <span class="text-2xl">⚡</span>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 dark:text-white">
+                                    Sui Blockchain
+                                </h4>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    <span id="suiDesc">Alta velocidad, bajo costo, modelo de objetos</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <span class="text-2xl">🌐</span>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 dark:text-white">
+                                    React + Sui.js
+                                </h4>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    <span id="reactDesc">Frontend interactivo</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <span class="text-2xl">🔐</span>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 dark:text-white">
+                                    Sui Wallet
+                                </h4>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    <span id="walletDesc">Conexión segura del usuario</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de página -->
+    <footer class="py-12 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center gap-3 mb-6 md:mb-0">
+                    <!-- 
+					<div class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">S</span>
+                    </div> 
+					-->
+					
+					<img src="logo2.png" alt="SuiSphere Logo" class="w-11 h-11" />
+					
+                    <!-- <h3 class="text-xl font-bold">SuiSphere</h3>-->
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p id="copyrightText" class="mb-2">© 2025 SuiSphere. Todos los derechos reservados.</p>
+                    <p id="builtText" class="text-sm opacity-75">Construido sobre Sui Blockchain</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Traducciones
+        const translations = {
+            en: {
+                // Hero section
+                mainTitle: "SuiSphere",
+                subtitle: "Social Network + On-Chain Marketplace",
+                description: "A decentralized social network with integrated marketplace, built on Sui Blockchain. Create, monetize, and sell digital assets directly from your posts.",
+                getStartedBtn: "Get Started",
+                viewDemoBtn: "View Demo",
+                
+                // Features section
+                featuresTitle: "Features",
+                featuresSubtitle: "What makes SuiSphere unique",
+                feature1Title: "On-Chain Posts",
+                feature1Desc: "Each post is an object on Sui with content, image and metadata. Creators truly own their content.",
+                feature2Title: "Direct Monetization",
+                feature2Desc: "Posts can be for sale. Buyers pay in SUI and sellers receive money instantly without intermediaries.",
+                feature3Title: "Real-time Events",
+                feature3Desc: "Each sale emits an NFTSold event, perfect for indexing and displaying in the feed. Full transparency in each transaction.",
+                feature4Title: "Low Cost & High Speed",
+                feature4Desc: "Thanks to Sui, transactions are nearly instant and cost less than $0.01. Scalability without compromises.",
+                
+                // Architecture section
+                archTitle: "Architecture",
+                archSubtitle: "Built with the most advanced Web3 technologies",
+                contractTitle: "Move Contract",
+                moduleLabel: "Module",
+                keyObjectsLabel: "Key Objects",
+                postDesc: "Post with content and price",
+                nftSoldDesc: "Sale event (for indexing)",
+                mainFuncLabel: "Main Functions",
+                createPostDesc: "Creates a new post",
+                buyNFTDesc: "Buys the \"NFT\" from a post for sale",
+                techTitle: "Technologies",
+                moveDesc: "Sui's language for smart contracts",
+                suiDesc: "High speed, low cost, object model",
+                reactDesc: "Interactive frontend",
+                walletDesc: "Secure user connection",
+                
+                // Footer
+                copyrightText: "© 2025 SuiSphere. All rights reserved.",
+                builtText: "Built on Sui Blockchain"
+            },
+            es: {
+                // Hero section
+                mainTitle: "SuiSphere",
+                subtitle: "Red Social + Marketplace On-Chain",
+                description: "Una red social descentralizada con marketplace integrado, construida sobre Sui Blockchain. Crea, monetiza y vende activos digitales directamente desde tus publicaciones.",
+                getStartedBtn: "Comenzar Ahora",
+                viewDemoBtn: "Ver Demo",
+                
+                // Features section
+                featuresTitle: "Características",
+                featuresSubtitle: "Lo que hace que SuiSphere sea único",
+                feature1Title: "Publicaciones on-chain",
+                feature1Desc: "Cada post es un objeto en Sui con contenido, imagen y metadatos. Los creadores poseen realmente su contenido.",
+                feature2Title: "Monetización directa",
+                feature2Desc: "Los posts pueden estar a la venta. Los compradores pagan en SUI y el vendedor recibe el dinero al instante sin intermediarios.",
+                feature3Title: "Eventos en tiempo real",
+                feature3Desc: "Cada venta emite un evento NFTSold, ideal para indexar y mostrar en el feed. Transparencia total en cada transacción.",
+                feature4Title: "Bajo costo y alta velocidad",
+                feature4Desc: "Gracias a Sui, las transacciones son casi instantáneas y cuestan menos de $0.01. Escalabilidad sin compromisos.",
+                
+                // Architecture section
+                archTitle: "Arquitectura",
+                archSubtitle: "Construido con las tecnologías más avanzadas de Web3",
+                contractTitle: "Contrato Move",
+                moduleLabel: "Módulo",
+                keyObjectsLabel: "Objetos clave",
+                postDesc: "Publicación con contenido y precio",
+                nftSoldDesc: "Evento de venta (para indexación)",
+                mainFuncLabel: "Funciones principales",
+                createPostDesc: "Crea una nueva publicación",
+                buyNFTDesc: "Compra el \"NFT\" de un post a la venta",
+                techTitle: "Tecnologías",
+                moveDesc: "Lenguaje de Sui para smart contracts",
+                suiDesc: "Alta velocidad, bajo costo, modelo de objetos",
+                reactDesc: "Frontend interactivo",
+                walletDesc: "Conexión segura del usuario",
+                
+                // Footer
+                copyrightText: "© 2025 SuiSphere. Todos los derechos reservados.",
+                builtText: "Construido sobre Sui Blockchain"
+            }
+        };
+
+        // Detectar idioma del navegador
+        function detectLanguage() {
+            const userLang = navigator.language || navigator.userLanguage;
+            return userLang.startsWith('es') ? 'es' : 'en';
+        }
+
+        // Aplicar traducciones
+        function applyTranslations(lang) {
+            const elements = document.querySelectorAll('[id]');
+            elements.forEach(element => {
+                const key = element.id;
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        // Alternar tema oscuro/claro
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        themeToggle.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                themeToggle.innerHTML = '<span>🌙</span><span>Modo Oscuro</span>';
+            } else {
+                html.classList.add('dark');
+                themeToggle.innerHTML = '<span>☀️</span><span>Modo Claro</span>';
+            }
+        });
+
+        // Alternar idioma
+        const languageToggle = document.getElementById('languageToggle');
+        let currentLang = detectLanguage();
+        
+        languageToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            applyTranslations(currentLang);
+            languageToggle.innerHTML = `<span>🌐</span><span>${currentLang === 'es' ? 'ES' : 'EN'}</span>`;
+        });
+
+        // Desplazamiento suave para la navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Detectar idioma al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            currentLang = detectLanguage();
+            applyTranslations(currentLang);
+            languageToggle.innerHTML = `<span>🌐</span><span>${currentLang === 'es' ? 'ES' : 'EN'}</span>`;
+            
+            // Establecer el atributo lang del html
+            document.documentElement.lang = currentLang;
+        });
+    </script>
+</body>
+</html>
