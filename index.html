@@ -307,30 +307,57 @@
 
     <!-- Pie de página -->
 
-<!-- Pie de página actualizado -->
-<footer class="py-12 bg-gray-50 dark:bg-gray-800">
+
+
+
+
+
+<!-- Pie de página actualizado con enlaces y estilos -->
+<footer class="py-12 bg-gray-50 dark:bg-gray-800/30 backdrop-blur-sm">
     <div class="max-w-7xl mx-auto px-6">
-        <div class="flex flex-col md:flex-row justify-between items-center">
+        <!-- Logo y texto -->
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8">
             <div class="flex items-center gap-3 mb-6 md:mb-0">
-                <img src="logo2.png" alt="SuiSphere Logo" class="w-11 h-11" />
+                <img src="logo2.png" alt="SuiSphere Logo" class="w-11 h-11 rounded-full object-cover" />
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">SuiSphere</h3>
+                    <p id="builtText" class="text-sm text-gray-600 dark:text-gray-300">Construido sobre Sui Blockchain</p>
+                </div>
             </div>
 
             <div class="text-center md:text-right">
-                <p id="copyrightText" class="mb-2">© 2025 SuiSphere. Todos los derechos reservados.</p>
-                <p id="builtText" class="text-sm opacity-75">Construido sobre Sui Blockchain</p>
+                <p id="copyrightText" class="text-gray-700 dark:text-gray-200">© 2025 SuiSphere. Todos los derechos reservados.</p>
             </div>
         </div>
 
-        <!-- Enlaces rápidos (opcional) -->
-        <div class="mt-8 flex flex-wrap justify-center gap-4 text-sm text-gray-500 dark:text-gray-400">
-            <a href="https://suiscan.xyz/devnet/object/0x4cff7d7181a85200ca2828a6bc74fa96980f6516837aa46ab13f0ded2fc3983c/tx-blocks" target="_blank" class="hover:text-blue-500">DevNet</a>
-            <a href="https://suiscan.xyz/testnet/object/0xa2ceb96f31a888a4b3e85c4bb8bc37ed482d166b8e1863b4132ca5378c405cc0/tx-blocks" target="_blank" class="hover:text-blue-500">TestNet</a>
-            <a href="https://suiscan.xyz/mainnet/account/0xbc8e8e6bf6c157e9ab0d7337815afa3b04f1bf8cf73ae04f8724c60e43b0dc7a/portfolio" target="_blank" class="hover:text-blue-500">MainNet</a>
-            <a href="https://suivision.xyz/object/0x85145eaab6b913003a5076d389b1fb796fdc575625c9b0c57fa88774301d2356" target="_blank" class="hover:text-blue-500">Move Package</a>
-            <a href="https://github.com/suisphere/" target="_blank" class="hover:text-blue-500">GitHub</a>
+        <!-- Enlaces rápidos con iconos -->
+        <div class="flex flex-wrap justify-center gap-6 text-sm font-medium">
+            <a href="https://suiscan.xyz/devnet/object/0x4cff7d7181a85200ca2828a6bc74fa96980f6516837aa46ab13f0ded2fc3983c/tx-blocks" target="_blank" class="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+                <span class="text-lg">🧪</span> DevNet
+            </a>
+            <a href="https://suiscan.xyz/testnet/object/0xa2ceb96f31a888a4b3e85c4bb8bc37ed482d166b8e1863b4132ca5378c405cc0/tx-blocks" target="_blank" class="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+                <span class="text-lg">🔧</span> TestNet
+            </a>
+            <a href="https://suiscan.xyz/mainnet/account/0xbc8e8e6bf6c157e9ab0d7337815afa3b04f1bf8cf73ae04f8724c60e43b0dc7a/portfolio" target="_blank" class="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+                <span class="text-lg">🚀</span> MainNet
+            </a>
+            <a href="https://suivision.xyz/object/0x85145eaab6b913003a5076d389b1fb796fdc575625c9b0c57fa88774301d2356" target="_blank" class="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+                <span class="text-lg">📦</span> Move Package
+            </a>
+            <a href="https://github.com/suisphere/" target="_blank" class="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.79-.26.79-.577v-2.234c-3.338.724-4.032-1.41-4.032-1.41-.546-1.386-1.332-1.755-1.332-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.524.105-3.176 0 0 1.005-.322 3.3 1.23A11.5 11.5 0 0112 5.803c1.08 0 2.13.18 3.105.528.885 1.656 1.38 2.867 1.38 3.176.645 1.652.24 3.176.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22v3.292c0 .318.185.69.805.576C20.565 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                GitHub
+            </a>
         </div>
     </div>
 </footer>
+
+
+
+
+
 
 
 
