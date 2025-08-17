@@ -510,6 +510,139 @@
             // Establecer el atributo lang del html
             document.documentElement.lang = currentLang;
         });
+
+	// Funciones para manejar el modal
+	function openModal() {
+    		document.getElementById('startModal').classList.remove('hidden');
+    		document.body.style.overflow = 'hidden'; // Evita scroll de fondo
+	}
+
+	function closeModal() {
+    		document.getElementById('startModal').classList.add('hidden');
+    		document.body.style.overflow = 'auto';
+	}
+
+	// Asociar el botón "Comenzar Ahora" con el modal
+	document.addEventListener('DOMContentLoaded', () => {
+    		const getStartedBtn = document.getElementById('getStartedBtn');
+    		if (getStartedBtn) {
+        		getStartedBtn.onclick = openModal;
+   	}
+
+    	// También aseguramos que el botón de demo siga funcionando
+    	document.getElementById('viewDemoBtn').addEventListener('click', () => {
+        	alert('Demo coming soon!'); // Puedes reemplazarlo con un video o tour
+    		});
+	});
     </script>
+
+
+
+
+
+<!-- Modal de "Comenzar Ahora" -->
+<div id="startModal" class="fixed inset-0 z-50 hidden flex items-center justify-center px-4">
+    <!-- Fondo oscuro -->
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeModal()"></div>
+
+    <!-- Contenido del modal -->
+    <div class="relative max-w-2xl w-full rounded-3xl glass-effect p-8 max-h-[90vh] overflow-y-auto">
+        <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl z-10">&times;</button>
+
+        <h2 class="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span id="modalTitle">Explore SuiSphere</span>
+        </h2>
+        <p class="text-gray-400 text-center mb-8">
+            <span id="modalSubtitle">Discover the project on-chain and in code</span>
+        </p>
+
+        <!-- Lista de enlaces -->
+        <ul class="space-y-4">
+            <!-- DevNet -->
+            <li>
+                <a href="https://suiscan.xyz/devnet/object/0x4cff7d7181a85200ca2828a6bc74fa96980f6516837aa46ab13f0ded2fc3983c/tx-blocks" target="_blank" class="flex items-start gap-4 p-4 rounded-xl hover:bg-white/10 transition-all duration-300 group">
+                    <span class="text-2xl">🧪</span>
+                    <div>
+                        <h3 class="font-bold text-white group-hover:text-blue-400">
+                            <span id="devnetTitle">DevNet Deployment</span>
+                        </h3>
+                        <p class="text-gray-300 text-sm">
+                            <span id="devnetDesc">Test the latest features in development environment</span>
+                        </p>
+                    </div>
+                </a>
+            </li>
+
+            <!-- TestNet -->
+            <li>
+                <a href="https://suiscan.xyz/testnet/object/0xa2ceb96f31a888a4b3e85c4bb8bc37ed482d166b8e1863b4132ca5378c405cc0/tx-blocks" target="_blank" class="flex items-start gap-4 p-4 rounded-xl hover:bg-white/10 transition-all duration-300 group">
+                    <span class="text-2xl">🔧</span>
+                    <div>
+                        <h3 class="font-bold text-white group-hover:text-blue-400">
+                            <span id="testnetTitle">TestNet Live</span>
+                        </h3>
+                        <p class="text-gray-300 text-sm">
+                            <span id="testnetDesc">Stable testing version with real interactions</span>
+                        </p>
+                    </div>
+                </a>
+            </li>
+
+            <!-- MainNet -->
+            <li>
+                <a href="https://suiscan.xyz/mainnet/account/0xbc8e8e6bf6c157e9ab0d7337815afa3b04f1bf8cf73ae04f8724c60e43b0dc7a/portfolio" target="_blank" class="flex items-start gap-4 p-4 rounded-xl hover:bg-white/10 transition-all duration-300 group">
+                    <span class="text-2xl">🚀</span>
+                    <div>
+                        <h3 class="font-bold text-white group-hover:text-blue-400">
+                            <span id="mainnetTitle">MainNet Production</span>
+                        </h3>
+                        <p class="text-gray-300 text-sm">
+                            <span id="mainnetDesc">Live version running on Sui MainNet</span>
+                        </p>
+                    </div>
+                </a>
+            </li>
+
+            <!-- Move Package -->
+            <li>
+                <a href="https://suivision.xyz/object/0x85145eaab6b913003a5076d389b1fb796fdc575625c9b0c57fa88774301d2356" target="_blank" class="flex items-start gap-4 p-4 rounded-xl hover:bg-white/10 transition-all duration-300 group">
+                    <span class="text-2xl">📦</span>
+                    <div>
+                        <h3 class="font-bold text-white group-hover:text-blue-400">
+                            <span id="packageTitle">Move Smart Contract</span>
+                        </h3>
+                        <p class="text-gray-300 text-sm">
+                            <span id="packageDesc">Explore the on-chain logic and package structure</span>
+                        </p>
+                    </div>
+                </a>
+            </li>
+
+            <!-- GitHub -->
+            <li>
+                <a href="https://github.com/suisphere/" target="_blank" class="flex items-start gap-4 p-4 rounded-xl hover:bg-white/10 transition-all duration-300 group">
+                    <svg class="w-7 h-7 text-gray-200 mt-0.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.79-.26.79-.577v-2.234c-3.338.724-4.032-1.41-4.032-1.41-.546-1.386-1.332-1.755-1.332-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.524.105-3.176 0 0 1.005-.322 3.3 1.23A11.5 11.5 0 0112 5.803c1.08 0 2.13.18 3.105.528.885 1.656.24 3.176.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22v3.292c0 .318.185.69.805.576C20.565 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                    <div>
+                        <h3 class="font-bold text-white group-hover:text-blue-400">
+                            <span id="githubTitle">Open Source Code</span>
+                        </h3>
+                        <p class="text-gray-300 text-sm">
+                            <span id="githubDesc">Analyze our code, contribute, or fork the project</span>
+                        </p>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
 </body>
 </html>
